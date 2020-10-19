@@ -85,11 +85,17 @@ describe('Vigenere cipher', () => {
 
         it.optional('double-sided reverse cryptography 2', () => {
             for (let i = 2; i < 200; i += 1) {
-                const testStr = createTestString(i);
-                const reversedTestStr = testStr.split('').reverse().join('');
-                const testKey = createTestKey(i - i % 2);
-                const encrypted = reverseMachine.encrypt(reversedTestStr, testKey);
-                const reversedEncrypted = encrypted.split('').reverse().join('');
+				const testStr = createTestString(i);
+				console.log(`testStr is: ${testStr}`);
+				const reversedTestStr = testStr.split('').reverse().join('');
+				console.log(`reversedTestStr is: ${reversedTestStr}`);
+				const testKey = createTestKey(i - i % 2);
+				console.log(`testKey is: ${testKey}`);
+				const encrypted = reverseMachine.encrypt(reversedTestStr, testKey);
+				console.log(`encrypted is: ${encrypted}`);
+				const reversedEncrypted = encrypted.split('').reverse().join('');
+				console.log(`reversedEncrypted is: ${reversedEncrypted}`);
+				console.log(`\n ReversedEncrypted is: ${reversedEncrypted}, testKey is: ${testKey}\ntestStr is: ${testStr}\n`);
                 assert.equal(reverseMachine.decrypt(reversedEncrypted, testKey), testStr);
             }
         });
